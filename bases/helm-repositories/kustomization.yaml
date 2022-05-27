@@ -5,13 +5,13 @@ resources:
 - csi-driver-smb.yaml
 - external-dns.yaml
 - grafana.yaml
-- hajimari
+- hajimari.yaml
 - hashicorp.yaml
 - influxdata.yaml
-- jetstack
+- jetstack.yaml
 - k8s-at-home.com.yaml
 - metallb.yaml
 - mojo2600.yaml
 - nautobot.yaml
-- nfs-subdir-external-provisioner
+- nfs-subdir-external-provisioner.yaml
 - traefik.yaml
