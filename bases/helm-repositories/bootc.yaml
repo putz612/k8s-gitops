@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: external-dns
+  name: bootc
   namespace: flux-system
 spec:
   interval: 10m0s
-  url: https://kubernetes-sigs.github.io/external-dns/
+  url: https://charts.boo.tc
