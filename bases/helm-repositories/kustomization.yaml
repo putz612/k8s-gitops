@@ -1,3 +1,4 @@
 resources:
 - bitnami.yaml
 - csi-driver-smb.yaml
+- hashicorp.yaml
