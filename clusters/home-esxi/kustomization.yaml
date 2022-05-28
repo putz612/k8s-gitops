@@ -3,4 +3,5 @@ bases:
 resources:
   - audiobooks
   - calibre
+  - cert-manager
   - vault
