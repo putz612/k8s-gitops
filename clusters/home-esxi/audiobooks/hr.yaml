@@ -1,0 +1,58 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: audiobookshelf
+  namespace: audiobooks
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: vault
+      version: 1.1.3
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    env:
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/advplyr/audiobookshelf
+      tag: 2.0.17
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: audiobooks.sievert.fun
+        hosts:
+          - host: audiobooks.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - audiobooks.sievert.fun
+            secretName: audiobooks-cert
+    persistence:
+      config:
+        enabled: true
+        existingClaim: audiobooks-config
+        mountPath: /config
+      media:
+        enabled: true
+        existingClaim: audiobooks-media
+        mountPath: /audiobooks
+      metadata:
+        enabled: true
+        existingClaim: audiobooks-metadata
+        mountPath: /metadata
+    service:
+      main:
+        ports:
+          http:
+            port: 80
