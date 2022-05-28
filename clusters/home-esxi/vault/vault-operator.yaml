@@ -17,3 +17,20 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    install:
+      crds: Create
+    upgrade:
+      crds: CreateReplace
+    values:
+      #    image:
+      #      repository: ricoberger/vault-secrets-operator
+      #      tag: 1.2.3
+      replicaCount: 1
+      deploymentStrategy:
+        type: Recreate
+      vault:
+        address: "http://vault:8200"
+        authMethod: kubernetes
+        kubernetesPath: auth/kubernetes
+        kubernetesRole: vault-secrets-operator
+        reconciliationTime: "300"
