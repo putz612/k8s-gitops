@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre-web
+  namespace: calibre
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: calibre-web
+      version: 8.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    env:
+      PGID: '1001'
+      PUID: '1001'
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: linuxserver/calibre-web
+      tag: version-0.6.12
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: ebooks.sievert.fun
+        hosts:
+          - host: ebooks.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - ebooks.sievert.fun
+            secretName: ebooks-cert
+    persistence:
+      books:
+        enabled: true
+        mountPath: /books
+        existingClaim: calibreweb-media
+      config:
+        enabled: true
+        mountPath: /config
+        existingClaim: calibreweb-config
+    service:
+      main:
+        ports:
+          http:
+            port: 8083
