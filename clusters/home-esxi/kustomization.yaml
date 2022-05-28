@@ -1,2 +1,4 @@
 bases:
   - ../../bases/helm-repositories
+resources:
+  - vault
