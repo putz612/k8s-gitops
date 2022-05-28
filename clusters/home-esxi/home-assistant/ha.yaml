@@ -1,0 +1,142 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ha
+  namespace: ha
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: home-assistant
+      version: 13.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    addons:
+      codeserver:
+        args:
+          - '--auth'
+          - none
+          - '--user-data-dir'
+          - /config/.vscode
+          - '--extensions-dir'
+          - /config/.vscode
+        enabled: true
+        volumeMounts:
+          - mountPath: /config
+            name: config
+        image:
+          repository: ghcr.io/k8s-at-home/code-server
+          tag: v3.12.0
+        ingress:
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt
+            external-dns.alpha.kubernetes.io/internal-hostname: hacode.sievert.fun
+          enabled: true
+          hosts:
+            - host: hacode.sievert.fun
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - hacode.sievert.fun
+              secretName: ha-code
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 35m
+            memory: 128Mi
+        workingDir: /config
+    env:
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/home-assistant/home-assistant
+      tag: 2022.5.5
+    influxdb:
+      architecture: standalone
+      authEnabled: false
+      database: home_assistant
+      enabled: false
+      persistence:
+        enabled: false
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: ha.sievert.fun
+        hosts:
+          - host: ha.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - ha.sievert.fun
+            secretName: ha-cert
+    mariadb:
+      architecture: standalone
+      auth:
+        database: home-assistant
+        password: home-assistant-pass
+        rootPassword: home-assistantrootpass
+        username: home-assistant
+      enabled: false
+      primary:
+        persistence:
+          enabled: true
+    metrics:
+      enabled: false
+      prometheusRule:
+        enabled: false
+        labels: {}
+        rules: []
+      serviceMonitor:
+        interval: 1m
+        labels: {}
+        scrapeTimeout: 30s
+    persistence:
+      config:
+        enabled: true
+      usb:
+        enabled: false
+        hostPath: /path/to/device
+        type: hostPath
+    postgresql:
+      enabled: false
+      image:
+        repository: bitnami/postgresql
+        tag: 14.1.0
+      persistence:
+        primary:
+          enabled: false
+      postgresqlDatabase: home-assistant
+      postgresqlPassword: home-assistant-pass
+      postgresqlUsername: home-assistant
+    securityContext:
+      privileged: null
+    service:
+      main:
+        ports:
+          http:
+            port: 8123
+      gem:
+        enabled: true
+        ports:
+          gem:
+            enabled: true
+            nodePort: 32500
+            port: 32500
+            protocol: TCP
+        type: NodePort
+    global:
+      cattle:
+        systemProjectId: p-dqkpq

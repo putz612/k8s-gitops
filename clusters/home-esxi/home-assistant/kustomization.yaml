@@ -1,0 +1,5 @@
+resources:
+  - ns.yaml
+  - ha.yaml
+  - mqtt.yaml
+namespace: ha

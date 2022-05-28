@@ -5,4 +5,5 @@ resources:
   - calibre
   - cert-manager
   - esphome
+  - home-assistant
   - vault
