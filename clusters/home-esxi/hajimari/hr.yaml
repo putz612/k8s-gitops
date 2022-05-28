@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://helm.releases.hashicorp.com
       chart: hajimari
-      version: 1.2.3
+      version: 1.2.0
       sourceRef:
         kind: HelmRepository
         name: hajimari
