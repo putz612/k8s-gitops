@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - hr.yaml
+namespace: heimdall

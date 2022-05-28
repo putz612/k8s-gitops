@@ -6,5 +6,6 @@ resources:
   - cert-manager
   - esphome
   - hajimari
+  - heimdall
   - home-assistant
   - vault
