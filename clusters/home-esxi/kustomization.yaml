@@ -4,4 +4,5 @@ resources:
   - audiobooks
   - calibre
   - cert-manager
+  - esphome
   - vault

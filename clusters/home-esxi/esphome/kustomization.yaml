@@ -1,4 +1,4 @@
 resources:
   - ns.yaml
   - hr.yaml
-namespace: cert-manager
+namespace: esphome

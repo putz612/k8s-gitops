@@ -1,0 +1,88 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: esphome
+  namespace: esphome
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: esphome
+      version: 8.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    env:
+      ESPHOME_DASHBOARD_USE_PING: true
+    image:
+      pullPolicy: IfNotPresent
+      repository: esphome/esphome
+      tag: 2022.5.0
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: esphome.sievert.fun
+        hosts:
+          - host: esphome.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - esphome.sievert.fun
+            secretName: esphome-cert
+    persistence:
+      config:
+        enabled: true
+    service:
+      main:
+        ports:
+          http:
+            port: 6052
+    addons:
+      codeserver:
+        args:
+          - '--auth'
+          - none
+          - '--user-data-dir'
+          - /config/.vscode
+          - '--extensions-dir'
+          - /config/.vscode
+        enabled: true
+        image:
+          repository: ghcr.io/k8s-at-home/code-server
+          tag: v4.4.0
+        ingress:
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt
+            external-dns.alpha.kubernetes.io/internal-hostname: espcode.sievert.fun
+          enabled: true
+          hosts:
+            - host: espcode.sievert.fun
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - espcode.sievert.fun
+              secretName: esp-code
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 35m
+            memory: 128Mi
+        volumeMounts:
+          - mountPath: /config
+            name: config
+        workingDir: /config
+    global:
+      cattle:
+        systemProjectId: p-dqkpq
