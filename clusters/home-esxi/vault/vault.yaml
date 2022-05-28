@@ -18,6 +18,17 @@ spec:
       interval: 5m
   values:
     server:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: vault.sievert.fun
+        hosts:
+          - vault.sievert.fun
+        tls:
+          - secretName: vault-tls
+            hosts:
+              - vault.sievert.fun
       dataStorage:
         enabled: true
         storageClass: "qnap-nfs-client"
