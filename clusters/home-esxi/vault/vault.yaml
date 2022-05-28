@@ -24,7 +24,7 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt
           external-dns.alpha.kubernetes.io/internal-hostname: vault.sievert.fun
         hosts:
-          - vault.sievert.fun
+          - host: vault.sievert.fun
         tls:
           - secretName: vault-tls
             hosts:
