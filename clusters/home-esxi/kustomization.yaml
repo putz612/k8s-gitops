@@ -11,5 +11,6 @@ resources:
   - home-assistant
   - influx
   - mealie
+  - music
   - pihole
   - vault
