@@ -1,0 +1,10 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: hadb-helm-values
+  namespace: ha
+spec:
+  keys:
+    - values.yaml
+  path: secrets/ha/hadb/hadb-helm-values
+  type: Opaque
