@@ -1,0 +1,107 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: influxdb-v1
+  namespace: influx
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: influxdb
+      version: 2.5.8
+      sourceRef:
+        kind: HelmRepository
+        name: influx
+        namespace: flux-system
+      interval: 5m
+  values:
+    valuesFrom:
+    - kind: Secret
+      name: "influxdbv1-helm-values"
+    affinity: {}
+    backup:
+      annotations: {}
+      enabled: false
+      nodeSelector: {}
+      persistence:
+        accessMode: ReadWriteOnce
+        annotations: null
+        enabled: true
+        size: 8Gi
+      podAnnotations: {}
+      resources:
+        requests:
+          ephemeral-storage: 8Gi
+      schedule: 0 0 * * *
+      startingDeadlineSeconds: ''
+    backupRetention:
+      annotations: {}
+      daysToRetain: 7
+      enabled: false
+      podAnnotations: {}
+      resources:
+        requests: null
+      schedule: 0 0 * * *
+      startingDeadlineSeconds: null
+    config:
+      collectd: {}
+      continuous_queries: {}
+      coordinator: {}
+      data: {}
+      graphite: {}
+      http: {}
+      logging: {}
+      meta: {}
+      monitor: {}
+      opentsdb: {}
+      reporting_disabled: false
+      retention: {}
+      rpc: {}
+      shard_precreation: {}
+      subscriber: {}
+      tls: {}
+      udp: {}
+    env: {}
+    envFromSecret: {}
+    extraContainers: {}
+    image:
+      pullPolicy: IfNotPresent
+      repository: influxdb
+      tag: 1.8.10-alpine
+    ingress:
+      annotations: {}
+      className: null
+      enabled: false
+      hostname: influxdb.foobar.com
+      path: /
+      tls: false
+    initScripts:
+      enabled: false
+      scripts:
+        init.iql: |+
+          CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+    livenessProbe: {}
+    nodeSelector: {}
+    persistence:
+      accessMode: ReadWriteOnce
+      annotations: null
+      enabled: true
+      size: 8Gi
+    podAnnotations: {}
+    podLabels: {}
+    readinessProbe: {}
+    resources: {}
+    securityContext: {}
+    service:
+      nodePorts:
+        http: ''
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: null
+    startupProbe:
+      enabled: false
+    tolerations: []
