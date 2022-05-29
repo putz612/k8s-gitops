@@ -1,4 +1,4 @@
 resources:
   - ns.yaml
-  - navidrom.yaml
+  - navidrome.yaml
 namespace: music
