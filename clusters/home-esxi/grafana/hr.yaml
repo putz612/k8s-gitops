@@ -1,0 +1,296 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: grafana
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: grafana
+      version: 7.8.1
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      interval: 5m
+  values:
+    valuesFrom:
+    - kind: Secret
+      name: "grafana-helm-values"
+      optional: false
+    clusterDomain: cluster.local
+    commonAnnotations: {}
+    commonLabels: {}
+    config:
+      grafanaIniConfigMap: ''
+      grafanaIniSecret: ''
+      useGrafanaIniFile: false
+    dashboardsConfigMaps: []
+    dashboardsProvider:
+      configMapName: ''
+      enabled: false
+    datasources:
+      secretName: ''
+    diagnosticMode:
+      args:
+        - infinity
+      command:
+        - sleep
+      enabled: false
+    extraDeploy: []
+    fullnameOverride: ''
+    global:
+      imagePullSecrets: []
+      imageRegistry: ''
+      storageClass: ''
+      cattle:
+        systemProjectId: p-dqkpq
+    grafana:
+      affinity: {}
+      args: []
+      command: []
+      containerPorts:
+        grafana: 3000
+      containerSecurityContext:
+        enabled: true
+        runAsUser: 1001
+      customLivenessProbe: {}
+      customReadinessProbe: {}
+      customStartupProbe: {}
+      extraConfigmaps: []
+      extraEnvVars: []
+      extraEnvVarsCM: ''
+      extraEnvVarsSecret: ''
+      extraVolumeMounts: []
+      extraVolumes: []
+      initContainers: []
+      lifecycleHooks: {}
+      livenessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 120
+        path: /api/health
+        periodSeconds: 10
+        scheme: HTTP
+        successThreshold: 1
+        timeoutSeconds: 5
+      nodeAffinityPreset:
+        key: ''
+        type: ''
+        values: []
+      nodeSelector: {}
+      podAffinityPreset: ''
+      podAnnotations: {}
+      podAntiAffinityPreset: soft
+      podLabels: {}
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+      priorityClassName: ''
+      readinessProbe:
+        enabled: true
+        failureThreshold: 6
+        initialDelaySeconds: 30
+        path: /api/health
+        periodSeconds: 10
+        scheme: HTTP
+        successThreshold: 1
+        timeoutSeconds: 5
+      replicaCount: 1
+      resources:
+        limits: {}
+        requests: {}
+      schedulerName: ''
+      sidecars: []
+      startupProbe:
+        enabled: false
+        failureThreshold: 6
+        initialDelaySeconds: 30
+        path: /api/health
+        periodSeconds: 10
+        scheme: HTTP
+        successThreshold: 1
+        timeoutSeconds: 5
+      tolerations: []
+      topologySpreadConstraints: []
+      updateStrategy:
+        type: RollingUpdate
+    hostAliases: []
+    image:
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/grafana
+      tag: 8.5.3-debian-10-r1
+    imageRenderer:
+      affinity: {}
+      args: []
+      command: []
+      containerSecurityContext:
+        enabled: true
+        runAsUser: 1001
+      enabled: false
+      extraEnvVars: {}
+      extraEnvVarsCM: ''
+      extraEnvVarsSecret: ''
+      image:
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/grafana-image-renderer
+        tag: 3.4.2-debian-10-r55
+      initContainers: []
+      metrics:
+        annotations:
+          prometheus.io/path: /metrics
+          prometheus.io/port: '8080'
+          prometheus.io/scrape: 'true'
+        enabled: false
+        prometheusRule:
+          additionalLabels: {}
+          enabled: false
+          namespace: ''
+          rules: []
+        serviceMonitor:
+          enabled: false
+          interval: ''
+          namespace: ''
+          scrapeTimeout: ''
+      nodeAffinityPreset:
+        key: ''
+        type: ''
+        values: []
+      nodeSelector: {}
+      podAffinityPreset: ''
+      podAnnotations: {}
+      podAntiAffinityPreset: soft
+      podSecurityContext:
+        enabled: true
+        fsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
+      replicaCount: 1
+      resources:
+        limits: {}
+        requests: {}
+      service:
+        annotations: {}
+        clusterIP: ''
+        externalTrafficPolicy: Cluster
+        extraPorts: []
+        loadBalancerIP: ''
+        loadBalancerSourceRanges: []
+        nodePorts:
+          grafana: ''
+        ports:
+          imageRenderer: 8080
+        type: ClusterIP
+      tolerations: []
+      topologySpreadConstraints: []
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        external-dns.alpha.kubernetes.io/internal-hostname: grafana.sievert.fun
+        hajimari.io/appName: Grafana
+        hajimari.io/enable: 'true'
+        hajimari.io/icon: chart-multiline
+      apiVersion: ''
+      enabled: true
+      extraHosts: []
+      extraPaths: []
+      extraRules: []
+      extraTls: []
+      hostname: grafana.sievert.fun
+      ingressClassName: ''
+      path: /
+      pathType: ImplementationSpecific
+      secrets: []
+      selfSigned: false
+      tls: true
+    kubeVersion: ''
+    ldap:
+      allowSignUp: false
+      configMapName: ''
+      configuration: ''
+      enabled: false
+      secretName: ''
+    metrics:
+      enabled: false
+      prometheusRule:
+        additionalLabels: {}
+        enabled: false
+        namespace: ''
+        rules: []
+      service:
+        annotations:
+          prometheus.io/path: /metrics
+          prometheus.io/port: '3000'
+          prometheus.io/scrape: 'true'
+      serviceMonitor:
+        additionalLabels: {}
+        enabled: false
+        honorLabels: false
+        interval: ''
+        jobLabel: ''
+        metricRelabelings: []
+        namespace: ''
+        scrapeTimeout: ''
+        selector: {}
+    nameOverride: ''
+    notifiers:
+      configMapName: ''
+    persistence:
+      accessMode: ReadWriteOnce
+      accessModes: []
+      annotations: {}
+      enabled: true
+      existingClaim: ''
+      size: 10Gi
+      storageClass: ''
+    plugins: grafana-piechart-panel, grafana-clock-panel
+    service:
+      annotations: {}
+      clusterIP: ''
+      externalTrafficPolicy: Cluster
+      extraPorts: []
+      loadBalancerIP: ''
+      loadBalancerSourceRanges: []
+      nodePorts:
+        grafana: ''
+      ports:
+        grafana: 3000
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: false
+      create: true
+      name: ''
+    smtp:
+      enabled: false
+      existingSecret: ''
+      existingSecretPasswordKey: password
+      existingSecretUserKey: user
+      fromAddress: ''
+      fromName: ''
+      host: ''
+      password: password
+      skipVerify: 'false'
+      user: user
+    volumePermissions:
+      containerSecurityContext:
+        runAsUser: 0
+      enabled: false
+      image:
+        pullPolicy: IfNotPresent
+        pullSecrets: []
+        registry: docker.io
+        repository: bitnami/bitnami-shell
+        tag: 10-debian-10-r432
+      resources:
+        limits: {}
+        requests: {}

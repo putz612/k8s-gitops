@@ -5,6 +5,7 @@ resources:
   - calibre
   - cert-manager
   - esphome
+  - grafana
   - hajimari
   - heimdall
   - home-assistant

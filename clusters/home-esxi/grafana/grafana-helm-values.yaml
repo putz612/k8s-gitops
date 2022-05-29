@@ -1,0 +1,10 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: grafana-helm-values
+  namespace: grafana
+spec:
+  keys:
+    - values.yaml
+  path: secrets/grafana/grafana/grafana-helm-values
+  type: Opaque
