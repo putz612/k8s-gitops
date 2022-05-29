@@ -10,5 +10,6 @@ resources:
   - heimdall
   - home-assistant
   - influx
+  - mealie
   - pihole
   - vault
