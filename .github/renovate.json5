@@ -4,7 +4,7 @@
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
-  "commitBody": "Signed-off-by: Jeff Billimek <billimek@users.noreply.github.com>",
+  "commitBody": "Signed-off-by: Jason Sievert <putz612@users.noreply.github.com>",
   // Do not notify on closed unmerged PRs
   "suppressNotifications": ["prIgnoreNotification"],
   // Do not rebase PRs
