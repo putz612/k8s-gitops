@@ -1,0 +1,163 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: pihole
+      version: 2.5.8
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    valuesFrom:
+    - kind: Secret
+      name: "pihole-helm-values"
+    DNS1: 8.8.8.8
+    DNS2: 8.8.4.4
+    adlists: {}
+    affinity: {}
+    antiaff:
+      avoidRelease: pihole1
+      enabled: false
+      strict: true
+    blacklist: {}
+    customVolumes:
+      config: {}
+      enabled: false
+    dnsHostPort:
+      enabled: false
+      port: 53
+    dnsmasq:
+      additionalHostsEntries: []
+      customCnameEntries: []
+      customDnsEntries: []
+      customSettings: null
+      staticDhcpEntries: []
+      upstreamServers: []
+    doh:
+      enabled: true
+      envVars: {}
+      name: cloudflared
+      probes:
+        liveness:
+          enabled: true
+          failureThreshold: 10
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+      pullPolicy: IfNotPresent
+      repository: crazymax/cloudflared
+      tag: latest
+    dualStack:
+      enabled: false
+    extraEnvVars: {}
+    extraEnvVarsSecret: {}
+    extraVolumeMounts: {}
+    extraVolumes: {}
+    ftl: {}
+    hostNetwork: 'false'
+    hostname: ''
+    image:
+      pullPolicy: Always
+      repository: pihole/pihole
+      tag: 2022.04.3
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        external-dns.alpha.kubernetes.io/internal-hostname: pihole.sievert.fun
+      enabled: true
+      hosts:
+        - pihole.sievert.fun
+      path: /
+      tls:
+        - hosts:
+            - pihole.sievert.fun
+          secretName: ha-cert
+    maxSurge: 1
+    maxUnavailable: 1
+    monitoring:
+      podMonitor:
+        enabled: false
+      sidecar:
+        enabled: false
+        image:
+          pullPolicy: IfNotPresent
+          repository: ekofr/pihole-exporter
+          tag: 0.0.10
+        port: 9617
+        resources:
+          limits:
+            memory: 128Mi
+    nodeSelector: {}
+    persistentVolumeClaim:
+      accessModes:
+        - ReadWriteOnce
+      annotations: {}
+      enabled: true
+      size: 500Mi
+    podAnnotations: {}
+    podDnsConfig:
+      enabled: true
+      nameservers:
+        - 127.0.0.1
+        - 8.8.8.8
+      policy: None
+    privileged: 'false'
+    probes:
+      liveness:
+        enabled: true
+        failureThreshold: 10
+        initialDelaySeconds: 60
+        timeoutSeconds: 5
+      readiness:
+        enabled: true
+        failureThreshold: 3
+        initialDelaySeconds: 60
+        timeoutSeconds: 5
+    regex: {}
+    replicaCount: 1
+    resources: {}
+    serviceDhcp:
+      annotations: {}
+      enabled: false
+      externalTrafficPolicy: Local
+      loadBalancerIP: 192.168.5.20
+      loadBalancerIPv6: ''
+      type: NodePort
+    serviceDns:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      externalTrafficPolicy: Local
+      loadBalancerIP: 192.168.5.20
+      loadBalancerIPv6: ''
+      mixedService: false
+      nodePort: ''
+      port: 53
+      type: LoadBalancer
+    serviceWeb:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      externalTrafficPolicy: Local
+      http:
+        enabled: true
+        port: 80
+      https:
+        enabled: true
+        port: 443
+      loadBalancerIP: 192.168.5.20
+      loadBalancerIPv6: ''
+      type: LoadBalancer
+    strategyType: RollingUpdate
+    tolerations: []
+    topologySpreadConstraints: []
+    virtualHost: pi.hole
+    webHttp: '80'
+    webHttps: '443'
+    whitelist: {}

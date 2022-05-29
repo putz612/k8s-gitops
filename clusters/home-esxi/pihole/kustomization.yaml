@@ -1,0 +1,5 @@
+resources:
+  - ns.yaml
+  - pihole-helm-values.yaml
+  - hr.yaml
+namespace: pihole
