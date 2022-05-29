@@ -1,0 +1,7 @@
+resources:
+  - ns.yaml
+  - mealie-helm-values.yaml
+  - mealiedb-helm-values.yaml
+  - mealie.yaml
+  - mealie-db.yaml
+namespace: mealie

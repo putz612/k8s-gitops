@@ -1,0 +1,10 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: mealie-helm-values
+  namespace: mealie
+spec:
+  keys:
+    - values.yaml
+  path: secrets/mealie/mealie/mealie-helm-values
+  type: Opaque
