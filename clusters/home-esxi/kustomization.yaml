@@ -9,5 +9,6 @@ resources:
   - hajimari
   - heimdall
   - home-assistant
+  - influx
   - pihole
   - vault
