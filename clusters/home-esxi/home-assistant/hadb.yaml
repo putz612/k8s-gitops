@@ -44,7 +44,7 @@ spec:
       pullSecrets: []
       registry: docker.io
       repository: bitnami/mariadb
-      tag: 10.5.13-debian-10-r15
+      tag: 10.5.15-debian-10-r15
     initdbScripts: {}
     initdbScriptsConfigMap: ''
     kubeVersion: ''
