@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
-      chart: 	mariadb
+      chart: mariadb
       version: 11.0.7
       sourceRef:
         kind: HelmRepository
