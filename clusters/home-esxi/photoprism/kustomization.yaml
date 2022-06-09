@@ -1,0 +1,7 @@
+resources:
+  - ns.yaml
+  - photoprismdb-helm-values.yaml
+  - photoprismdb-helm-values.yaml
+  - photoprism.yaml
+  - photoprism-db.yaml
+namespace: photoprism

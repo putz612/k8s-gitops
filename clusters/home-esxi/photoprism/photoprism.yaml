@@ -1,0 +1,78 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism
+  namespace: photoprism
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
+      chart: photoprism
+      version: 6.3.3
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    valuesFrom:
+    - kind: Secret
+      name: "photoprism-helm-values"
+    env:
+      GID: null
+      PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals
+      PHOTOPRISM_PUBLIC: 'false'
+      PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+      TZ: UTC
+      UID: null
+      UMASK: null
+    image:
+      pullPolicy: IfNotPresent
+      repository: photoprism/photoprism
+      tag: null
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: photos.sievert.fun
+        hosts:
+          - host: photos.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - photos.sievert.fun
+            secretName: photos-cert
+    mariadb:
+      architecture: standalone
+      auth:
+        database: photoprism
+        password: photoprism
+        rootPassword: photoprism
+        username: photoprism
+      enabled: false
+      primary:
+        persistence:
+          enabled: false
+    persistence:
+      config:
+        enabled: true
+        mountPath: /photoprism/storage
+        existingClaim: photoprism-storage
+      originals:
+        enabled: true
+        mountPath: /photoprism/originals
+        existingClaim: photoprism-originals
+      import:
+        enabled: true
+        existingClaim: photoprism-import
+        mountPath: /photoprism/import
+    service:
+      main:
+        ports:
+          http:
+            port: 2342

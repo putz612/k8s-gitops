@@ -12,5 +12,6 @@ resources:
   - influx
   - mealie
   - music
+  - photoprism
   - pihole
   - vault

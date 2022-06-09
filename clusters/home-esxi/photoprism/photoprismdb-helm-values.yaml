@@ -1,0 +1,10 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: photoprismdb-helm-values
+  namespace: mealie
+spec:
+  keys:
+    - values.yaml
+  path: secrets/photoprism/photoprism/photoprismdb-helm-values
+  type: Opaque
