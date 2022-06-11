@@ -16,10 +16,10 @@ spec:
         name: influxdata
         namespace: flux-system
       interval: 5m
-  values:
-    valuesFrom:
+  valuesFrom:
     - kind: Secret
       name: "influxdbv1-helm-values"
+  values:
     affinity: {}
     backup:
       annotations: {}

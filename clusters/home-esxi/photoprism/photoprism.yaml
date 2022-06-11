@@ -16,10 +16,10 @@ spec:
         name: k8s-at-home
         namespace: flux-system
       interval: 5m
-  values:
-    valuesFrom:
+  valuesFrom:
     - kind: Secret
       name: "photoprism-helm-values"
+  values:
     env:
       GID: null
       PHOTOPRISM_ORIGINALS_PATH: /photoprism/originals

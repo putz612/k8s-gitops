@@ -16,10 +16,10 @@ spec:
         name: bitnami
         namespace: flux-system
       interval: 5m
-  values:
-    valuesFrom:
+  valuesFrom:
     - kind: Secret
       name: "mealiedb-helm-values"
+  values:
     architecture: standalone
     audit:
       clientMinMessages: error

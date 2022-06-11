@@ -16,10 +16,10 @@ spec:
         name: k8s-at-home
         namespace: flux-system
       interval: 5m
-  values:
-    valuesFrom:
+  valuesFrom:
     - kind: Secret
       name: "mealie-helm-values"
+  values:
     env:
       DB_ENGINE: postgres
       TZ: UTC

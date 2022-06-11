@@ -5,9 +5,6 @@ metadata:
   name: hadb
   namespace: ha
 spec:
-  valuesFrom:
-    - kind: Secret
-      name: "hadb-helm-values"
   interval: 5m
   chart:
     spec:
@@ -19,6 +16,9 @@ spec:
         name: bitnami
         namespace: flux-system
       interval: 5m
+  valuesFrom:
+    - kind: Secret
+      name: "hadb-helm-values"
   values:
     architecture: standalone
     clusterDomain: cluster.local
