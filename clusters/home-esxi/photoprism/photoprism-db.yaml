@@ -20,6 +20,7 @@ spec:
     valuesFrom:
     - kind: Secret
       name: "photoprismdb-helm-values"
+      optional: false
     architecture: standalone
     clusterDomain: cluster.local
     commonAnnotations: {}
