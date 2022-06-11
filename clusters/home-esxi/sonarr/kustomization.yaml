@@ -1,4 +1,4 @@
 resources:
   - ns.yaml
-  - traefik.yaml
-namespace: traefik
+  - sonarr.yaml
+namespace: sonarr
