@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: nodered
+      chart: node-red
       version: 10.1.2
       sourceRef:
         kind: HelmRepository
