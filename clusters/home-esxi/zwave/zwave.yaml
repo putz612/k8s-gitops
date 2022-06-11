@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zwavejs2mqtt
+  namespace: zwave
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: zwavejs2mqtt
+      version: 5.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                    - zwave-controller
+    env:
+      NETWORK_KEY: null
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: zwavejs/zwavejs2mqtt
+      tag: 6.11.0
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: zwave.sievert.fun
+        hosts:
+          - host: zwave.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - zwave.sievert.fun
+            secretName: zwave-cert
+    persistence:
+      config:
+        enabled: true
+        mountPath: /usr/src/app/store
+      usb:
+        enabled: true
+        hostPath: /dev/serial/by-id/usb-0658_0200-if00
+        type: hostPath
+    securityContext:
+      privileged: true
+    service:
+      main:
+        ports:
+          http:
+            port: 8091
+          websocket:
+            enabled: true
+            port: 3000
