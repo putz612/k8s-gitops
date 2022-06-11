@@ -2,7 +2,7 @@ apiVersion: ricoberger.de/v1alpha1
 kind: VaultSecret
 metadata:
   name: photoprismdb-helm-values
-  namespace: mealie
+  namespace: photoprism
 spec:
   keys:
     - values.yaml
