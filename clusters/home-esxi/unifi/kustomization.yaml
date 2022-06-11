@@ -1,0 +1,5 @@
+resources:
+  - ns.yaml
+  - poller-helm-values.yaml
+  - poller.yaml
+namespace: unifi

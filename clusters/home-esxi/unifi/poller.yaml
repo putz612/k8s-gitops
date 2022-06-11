@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: poller
+  namespace: unifi
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: unifi-poller
+      version: 10.3.3
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    valuesFrom:
+    - kind: Secret
+      name: "poller-helm-values"
+    env:
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: golift/unifi-poller
+      tag: 2.1.3
+    influxdb:
+      architecture: standalone
+      authEnabled: false
+      database: unifi
+      enabled: false
+      persistence:
+        enabled: false
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: uip.sievert.fun
+        hosts:
+          - host: uip.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - uip.sievert.fun
+            secretName: uip-cert
+    metrics:
+      enabled: false
+      prometheusRule:
+        enabled: false
+        labels: {}
+        rules: []
+      serviceMonitor:
+        interval: 1m
+        labels: {}
+        scrapeTimeout: 30s
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          metrics:
+            enabled: true
+            port: 9130
+            protocol: TCP

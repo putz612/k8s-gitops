@@ -14,5 +14,6 @@ resources:
   - music
   - photoprism
   - pihole
+  - unifi
   - vault
   - zwave

@@ -1,0 +1,10 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: poller-helm-values
+  namespace: unifi
+spec:
+  keys:
+    - values.yaml
+  path: secrets/unifi/poller/poller-helm-values
+  type: Opaque
