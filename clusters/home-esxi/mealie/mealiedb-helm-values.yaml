@@ -6,5 +6,5 @@ metadata:
 spec:
   keys:
     - values.yaml
-  path: secrets/mealie/mealie/mealiedb-helm-values
+  path: secrets/mealie/mealiedb/mealiedb-helm-values
   type: Opaque
