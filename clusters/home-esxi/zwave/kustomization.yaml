@@ -1,4 +1,4 @@
 resources:
   - ns.yaml
-  - zwavejs2mqtt.yaml
+  - zwave.yaml
 namespace: zwave
