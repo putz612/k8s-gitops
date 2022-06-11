@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - nodered.yaml
+namespace: nodered

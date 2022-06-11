@@ -12,6 +12,7 @@ resources:
   - influx
   - mealie
   - music
+  - nodered
   - photoprism
   - pihole
   - unifi

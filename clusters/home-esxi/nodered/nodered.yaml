@@ -1,0 +1,55 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nodered
+  namespace: nodered
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: nodered
+      version: 10.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    env:
+      FLOWS: flows.json
+      NODE_OPTIONS: null
+      NODE_RED_ENABLE_PROJECTS: null
+      NODE_RED_ENABLE_SAFE_MODE: null
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: nodered/node-red
+      tag: 2.2.2-14
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: nodered.sievert.fun
+        hosts:
+          - host: nodered.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - nodered.sievert.fun
+            secretName: nodered-cert
+    persistence:
+      data:
+        enabled: true
+        mountPath: /data
+        accessMode: ReadWriteOnce
+        size: 5Gi
+    service:
+      main:
+        ports:
+          http:
+            port: 1880
