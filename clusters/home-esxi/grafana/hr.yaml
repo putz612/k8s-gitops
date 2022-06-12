@@ -16,11 +16,11 @@ spec:
         name: bitnami
         namespace: flux-system
       interval: 5m
-  values:
-    valuesFrom:
+  valuesFrom:
     - kind: Secret
       name: "grafana-helm-values"
       optional: false
+  values:
     clusterDomain: cluster.local
     commonAnnotations: {}
     commonLabels: {}
