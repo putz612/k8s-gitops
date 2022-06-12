@@ -1,0 +1,82 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nzbhydra2
+  namespace: nzbhydra2
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: nzbhydra2
+      version: 10.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      interval: 5m
+  values:
+    env:
+      TZ: UTC
+    image:
+      pullPolicy: IfNotPresent
+      repository: ghcr.io/k8s-at-home/nzbhydra2
+      tag: v4.3.1
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: hydra.sievert.fun
+        hosts:
+          - host: hydra.sievert.fun
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - hydra.sievert.fun
+            secretName: hydra-cert
+    persistence:
+      config:
+        enabled: true
+    probes:
+      liveness:
+        custom: true
+        enabled: true
+        spec:
+          failureThreshold: 5
+          httpGet:
+            path: /actuator/health/livenessState
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+      readiness:
+        custom: true
+        enabled: true
+        spec:
+          failureThreshold: 5
+          httpGet:
+            path: /actuator/health/readinessState
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+      startup:
+        custom: true
+        enabled: true
+        spec:
+          failureThreshold: 5
+          httpGet:
+            path: /actuator/health/readinessState
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+    service:
+      main:
+        ports:
+          http:
+            port: 5076
