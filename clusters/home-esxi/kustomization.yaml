@@ -10,6 +10,7 @@ resources:
   - heimdall
   - home-assistant
   - influx
+  - metallb-system
   - mealie
   - music
   - nfs
