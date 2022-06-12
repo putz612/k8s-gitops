@@ -15,6 +15,7 @@ resources:
   - nodered
   - photoprism
   - pihole
+  - sabnzbd
   - sonarr
   - traefik
   - unifi

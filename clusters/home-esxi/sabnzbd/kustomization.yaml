@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - sabnzbd.yaml
+namespace: sabnzbd
