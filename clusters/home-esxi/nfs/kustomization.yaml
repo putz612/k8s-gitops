@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - nfs-qnap-rancher.yaml
+namespace: nfs

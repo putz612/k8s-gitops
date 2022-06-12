@@ -1,0 +1,62 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nfs-qnap-rancher
+  namespace: nfs
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: nfs-subdir-external-provisioner
+      version: 10.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: nfs-subdir-external-provisioner
+        namespace: flux-system
+      interval: 5m
+  values:
+    affinity: {}
+    image:
+      pullPolicy: IfNotPresent
+      repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
+      tag: v4.0.2
+    imagePullSecrets: []
+    labels: {}
+    leaderElection:
+      enabled: true
+    nfs:
+      mountOptions:
+        - local_lock=all
+      path: /rancher
+      reclaimPolicy: Retain
+      server: 192.168.100.180
+      volumeName: nfs-subdir-qnap-rancher
+    nodeSelector: {}
+    podAnnotations: {}
+    podSecurityContext: {}
+    podSecurityPolicy:
+      enabled: false
+    rbac:
+      create: true
+    replicaCount: 1
+    resources: {}
+    securityContext: {}
+    serviceAccount:
+      annotations: {}
+      create: true
+      name: null
+    storageClass:
+      accessModes: ReadWriteOnce
+      allowVolumeExpansion: true
+      annotations: {}
+      archiveOnDelete: true
+      create: true
+      defaultClass: true
+      name: qnap-nfs-client
+      onDelete: null
+      pathPattern: null
+      reclaimPolicy: Delete
+    strategyType: Recreate
+    tolerations: []

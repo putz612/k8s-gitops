@@ -12,6 +12,7 @@ resources:
   - influx
   - mealie
   - music
+  - nfs
   - nodered
   - nzbhydra2
   - overseerr
