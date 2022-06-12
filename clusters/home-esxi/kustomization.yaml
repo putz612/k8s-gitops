@@ -15,6 +15,7 @@ resources:
   - nodered
   - photoprism
   - pihole
+  - readarr
   - sabnzbd
   - sonarr
   - traefik

@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - readarr.yaml
+namespace: readarr
