@@ -3,6 +3,7 @@ bases:
 resources:
   - audiobooks
   - calibre
+  - cattle-system
   - cert-manager
   - esphome
   - grafana

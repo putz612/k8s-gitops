@@ -1,0 +1,10 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: rancher-helm-values
+  namespace: cattle-system
+spec:
+  keys:
+    - values.yaml
+  path: secrets/cattle-system/rancher/rancher-helm-values
+  type: Opaque
