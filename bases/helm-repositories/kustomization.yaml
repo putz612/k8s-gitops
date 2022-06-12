@@ -14,6 +14,6 @@ resources:
 - mojo2600.yaml
 - nautobot.yaml
 - nfs-subdir-external-provisioner.yaml
-- rancher-latest
+- rancher-latest.yaml
 - ricoberger.yaml
 - traefik.yaml
