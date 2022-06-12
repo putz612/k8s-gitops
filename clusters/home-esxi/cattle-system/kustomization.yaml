@@ -1,5 +1,5 @@
 resources:
   - ns.yaml
-  - rancher-helm-values
+  - rancher-helm-values.yaml
   - rancher.yaml
 namespace: cattle-system
