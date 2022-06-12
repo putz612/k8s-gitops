@@ -13,6 +13,7 @@ resources:
   - mealie
   - music
   - nodered
+  - overseerr
   - photoprism
   - pihole
   - plex
