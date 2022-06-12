@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - radarr.yaml
+namespace: radarr
