@@ -24,7 +24,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: linuxserver/heimdall
-      tag: 2.4.12
+      tag: 2021.11.28
     ingress:
       main:
         enabled: true
