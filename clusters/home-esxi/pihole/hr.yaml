@@ -67,7 +67,7 @@ spec:
     image:
       pullPolicy: Always
       repository: pihole/pihole
-      tag: 2022.04.3
+      tag: 2022.07.1
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
