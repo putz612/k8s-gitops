@@ -22,7 +22,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: esphome/esphome
-      tag: 2022.8.1
+      tag: 2022.8.3
     ingress:
       main:
         enabled: true
