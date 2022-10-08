@@ -1,5 +1,6 @@
 resources:
 - bitnami.yaml
+- bjw-s.yaml
 - blakeblackshear.yaml
 - bootc.yaml
 - csi-driver-smb.yaml
