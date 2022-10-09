@@ -1,4 +1,5 @@
 resources:
   - ns.yaml
   - hr.yaml
+  - appdaemon-helm-values.yaml
 namespace: appdaemon

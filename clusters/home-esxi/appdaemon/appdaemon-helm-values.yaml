@@ -1,0 +1,10 @@
+apiVersion: ricoberger.de/v1alpha1
+kind: VaultSecret
+metadata:
+  name: appdaemon-helm-values
+  namespace: appdaemon
+spec:
+  keys:
+    - values.yaml
+  path: secrets/appdaemon/appdaemon/appdaemon-helm-values
+  type: Opaque
