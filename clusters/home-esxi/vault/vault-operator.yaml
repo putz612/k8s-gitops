@@ -17,10 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    install:
-      crds: Create
-    upgrade:
-      crds: CreateReplace
 #    image:
 #      repository: ricoberger/vault-secrets-operator
 #      tag: 1.2.3
