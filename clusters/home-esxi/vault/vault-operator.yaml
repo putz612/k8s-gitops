@@ -32,4 +32,3 @@ spec:
       authMethod: kubernetes
       kubernetesPath: auth/kubernetes
       kubernetesRole: vault-secrets-operator
-      reconciliationTime: "300"
