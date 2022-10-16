@@ -23,7 +23,7 @@ spec:
     env:
       TIMEZONE: UTC
       HA_URL: "https://ha.sievert.fun" 
-      DASH_URL: "https://appdaemon.sievert.fun"
+      DASH_URL: "https://appdaemon.sievert.fun:5050"
     image:
       pullPolicy: IfNotPresent
       repository: acockburn/appdaemon
