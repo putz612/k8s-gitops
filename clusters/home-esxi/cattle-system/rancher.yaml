@@ -45,8 +45,7 @@ spec:
     imagePullSecrets: []
     ingress:
       enabled: true
-      extraAnnotations:
-        metallb.universe.tf/address-pool: default
+      extraAnnotations: []
       includeDefaultExtraAnnotations: true
       tls:
         secretName: tls-rancher-ingress
