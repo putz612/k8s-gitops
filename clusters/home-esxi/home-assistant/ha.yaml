@@ -32,6 +32,21 @@ spec:
             value: "https://appdaemon.sievert.fun:5050"
           - name: HA_URL
             value: "http://localhost:8123"
+        ingress:
+          main:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt
+              external-dns.alpha.kubernetes.io/internal-hostname: appdaemon.sievert.fun
+            hosts:
+              - host: appdaemon.sievert.fun
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - hosts:
+                  - appdaemon.sievert.fun
+                secretName: appdaemon-cert
     addons:
       codeserver:
         args:
