@@ -1,7 +1,6 @@
 bases:
   - ../../bases/helm-repositories
 resources:
-  - appdaemon
   - audiobooks
   - calibre
   - cattle-system
