@@ -22,6 +22,13 @@ spec:
         name: appdaemon
         image: acockburn/appdaemon:4.2.1
         imagePullPolicy: IfNotPresent
+        env:
+          - name: TIMEZONE
+            value: UTC
+          - name: DASH_URL
+            value: "https://appdaemon.sievert.fun:5050"
+          - name: HA_URL
+            value: "https://ha.sievert.fun" 
     addons:
       codeserver:
         args:
