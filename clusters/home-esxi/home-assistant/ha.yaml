@@ -37,18 +37,19 @@ spec:
             containerPort: 5050
         ingress:
           enabled: true
-          annotations:
-            cert-manager.io/cluster-issuer: letsencrypt
-            external-dns.alpha.kubernetes.io/internal-hostname: appdaemon.sievert.fun
-          hosts:
-            - host: appdaemon.sievert.fun
-              paths:
-                - path: /
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - appdaemon.sievert.fun
-              secretName: appdaemon-cert
+          appdaemon:
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt
+              external-dns.alpha.kubernetes.io/internal-hostname: appdaemon.sievert.fun
+            hosts:
+              - host: appdaemon.sievert.fun
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - hosts:
+                  - appdaemon.sievert.fun
+                secretName: appdaemon-cert
     addons:
       codeserver:
         args:
@@ -156,6 +157,12 @@ spec:
     securityContext:
       privileged: null
     service:
+      appdaemon:
+        enabled: true
+        ports:
+        - name:  appdaemon
+          port:  5050
+          protocol: TCP
       main:
         ports:
           http:
