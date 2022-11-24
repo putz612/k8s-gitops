@@ -23,8 +23,9 @@ spec:
         image: acockburn/appdaemon:4.2.1
         imagePullPolicy: IfNotPresent
         volumeMounts:
-          - mountPath: /config
-            name: config
+          - name: config
+            subPath: appdaemon
+            mountPath: /conf
         env:
           - name: TIMEZONE
             value: UTC
