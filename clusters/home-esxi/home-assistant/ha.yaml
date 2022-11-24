@@ -145,9 +145,10 @@ spec:
       appdaemon:
         enabled: true
         ports:
-        - name:  appdaemon
-          port:  5050
-          protocol: TCP
+          appdaemon:
+            enabled: true
+            port:  5050
+            protocol: TCP
       main:
         ports:
           http:
