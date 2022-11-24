@@ -32,9 +32,6 @@ spec:
             value: "https://appdaemon.sievert.fun:5050"
           - name: HA_URL
             value: "http://localhost:8123"
-        ports:
-          - name: appdaemon
-            containerPort: 5050
     addons:
       codeserver:
         args:
