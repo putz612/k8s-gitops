@@ -28,7 +28,7 @@ spec:
             mountPath: /conf
         env:
           - name: TIMEZONE
-            value: UTC
+            value: America/Chicago
           - name: DASH_URL
             value: "https://appdaemon.sievert.fun:5050"
           - name: HA_URL
