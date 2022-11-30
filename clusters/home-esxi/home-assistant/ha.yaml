@@ -75,7 +75,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2022.11.3
+      tag: 2022.11.5
     influxdb:
       architecture: standalone
       authEnabled: false
