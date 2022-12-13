@@ -2,6 +2,7 @@ bases:
   - ../../bases/helm-repositories
 resources:
   - audiobooks
+  - bliss
   - calibre
   - cattle-system
   - cert-manager
