@@ -21,7 +21,7 @@ spec:
       TZ : America/Chicago
     image:
       pullPolicy: Always
-      repository: docker pull cooperised/bliss
+      repository: cooperised/bliss
       tag: latest
     ingress:
       main:
