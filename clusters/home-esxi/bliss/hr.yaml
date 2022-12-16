@@ -42,6 +42,10 @@ spec:
       config:
         enabled: true
         mountPath: /config
+      media:
+        enabled: true
+        mountPath: /media
+        existingClaim: bliss-media
     service:
       main:
         ports:
