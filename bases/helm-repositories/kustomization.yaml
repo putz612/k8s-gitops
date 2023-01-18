@@ -4,6 +4,7 @@ resources:
 - blakeblackshear.yaml
 - bootc.yaml
 - csi-driver-smb.yaml
+- emqx.yaml
 - external-dns.yaml
 - grafana.yaml
 - hajimari.yaml
