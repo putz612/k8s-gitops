@@ -6,6 +6,7 @@ resources:
   - calibre
   - cattle-system
   - cert-manager
+  - emqx
   - esphome
   - grafana
   - hajimari
