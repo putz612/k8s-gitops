@@ -21,3 +21,18 @@ spec:
     persistance:
       enabled: true
       storageClassName: "qnap-nfs-client"
+    ingress:
+      ## ingress for EMQX Dashboard
+      dashboard:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/internal-hostname: emqx.sievert.fun
+        path: /
+        pathType: ImplementationSpecific
+        hosts:
+          - emqx.emqx.local
+        tls:
+          - hosts:
+            - emqx.sievert.fun
+            secretName: esp-code
