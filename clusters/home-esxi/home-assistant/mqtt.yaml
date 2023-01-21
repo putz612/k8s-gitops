@@ -32,14 +32,14 @@ spec:
       data:
         enabled: false
         mountPath: /mosquitto/data
-#    service:
-#      main:
-#        ports:
-#          http:
-#            enabled: false
-#          mqtt:
-#            enabled: true
-#            port: 1883
+    service:
+      main:
+        ports:
+          http:
+            enabled: false
+          mqtt:
+            enabled: false
+            port: 1883
 #        annotations:
 #          external-dns.alpha.kubernetes.io/hostname: mqtt.sievert.fun
 #          external-dns.alpha.kubernetes.io/target: 192.168.5.16
