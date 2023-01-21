@@ -41,3 +41,27 @@ spec:
           - hosts:
             - emqx.sievert.fun
             secretName: esp-code
+    service:
+      ## Service type
+      ##
+      type: LoadBalancer
+      loadBalancerIP: 192.168.5.16
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: mqtt.sievert.fun
+        external-dns.alpha.kubernetes.io/target: 192.168.5.16
+      ## Port for MQTT
+      ##
+      mqtt: 1883
+      ## Port for MQTT(SSL)
+      ##
+      mqttssl: 8883
+      ## Port for WebSocket/HTTP
+      ##
+      ws: 8083
+      ## Port for WSS/HTTPS
+      ##
+      wss: 8084
+      ## Port for dashboard and API
+      ##
+      dashboard: 18083
+      ## Port for dashboard and API over HTTPS
