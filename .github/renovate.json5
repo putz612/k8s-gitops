@@ -1,201 +1,88 @@
 {
-  "enabled": true,
-  "timezone": "America/New_York",
-  "semanticCommits": "enabled",
-  "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Renovate Dashboard",
-  "commitBody": "Signed-off-by: Jason Sievert <putz612@users.noreply.github.com>",
-  // Do not notify on closed unmerged PRs
-  "suppressNotifications": ["prIgnoreNotification"],
-  // Do not rebase PRs
-  "rebaseWhen": "conflicted",
-  "commitMessageTopic": "{{depName}}",
-  "commitMessageExtra": "to {{newVersion}}",
-  "commitMessageSuffix": "",
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>putz612/renovate-config",
+    "github>putz612/renovate-config:automerge-github-actions",
+    "github>putz612/home-ops//.github/renovate/allowedVersions.json5",
+    "github>putz612/home-ops//.github/renovate/autoMerge.json5",
+    "github>putz612/home-ops//.github/renovate/disabledDatasources.json5",
+    "github>putz612/home-ops//.github/renovate/groups.json5",
+  ],
+  "platform": "github",
+  "repositories": ["putz612/k8s-gitops"],
+  "flux": {
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  },
   "helm-values": {
-    "fileMatch": ["./.+\\.yaml$"]
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
   "kubernetes": {
-    "fileMatch": ["\\.yaml$"],
-    "ignorePaths": [
-      "flux-system/",
-      ".github"
-    ],
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
   "regexManagers": [
     {
-      "fileMatch": ["./.+\\.yaml$"],
+      "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
+      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
       "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
+        "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
       ],
       "datasourceTemplate": "helm"
+    },
+    {
+      "description": ["Generic Docker image Regex manager"],
+      "fileMatch": [
+        "infrastructure/.+\\.ya?ml$",
+        "infrastructure/.+\\.tf$"
+      ],
+      "matchStrings": [
+        "# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] \"?(?<depName>.*?):(?<currentValue>[^\"\n]*=?)\"?",
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    },
+    {
+      "description": ["Raw GitHub URL Regex manager"],
+      "fileMatch": [
+        "infrastructure/.+\\.ya?ml$",
+        "kubernetes/.+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*",
+      ],
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
     }
   ],
   "packageRules": [
-    // Setup datasources
+    // Custom version schemes
     {
-      "datasources": ["helm"],
-      "commitMessageTopic": "Helm chart {{depName}}",
-      "semanticCommitScope": "charts",
-      "separateMinorPatch": true,
-      "ignoreDeprecated": true
-    },
-    {
-      "datasources": ["docker"],
-      "commitMessageTopic": "Docker image {{depName}}",
-      "commitMessageExtra": "to {{#if isSingleVersion}}{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}",
-      "updateTypes": ["major", "minor", "patch"],
-      "enabled": true
-    },
-    {
+      "description": "Use custom versioning for dsmr-reader",
       "matchDatasources": ["docker"],
-      "semanticCommitScope": "images",
-      "separateMinorPatch": true
+      "matchPackageNames": ["xirixiz/dsmr-reader-docker"],
+      "versioning": "regex:^(?<compatibility>.*)-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<build>\\d+\\.\\d+\\.\\d+)$"
     },
-    // add labels according to package and update types
     {
+      "description": "Use custom versioning for Vector",
       "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(images)!: ",
-      "labels": ["renovate/image", "dep/major"]
+      "matchPackageNames": ["docker.io/timberio/vector"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$"
     },
     {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
-      "labels": ["renovate/image", "dep/minor"]
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
-      "labels": ["renovate/image", "dep/patch"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(charts)!: ",
-      "labels": ["renovate/helm", "dep/major"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
-      "labels": ["renovate/helm", "dep/minor"]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
-      "labels": ["renovate/helm", "dep/patch"]
-    },
-    // Custom versions
-    {
-      "matchDatasources": ["docker"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-      "matchPackageNames": ["blakeblackshear/frigate"]
-    },
-    {
+      "description": "Use custom versioning for Minio",
       "matchDatasources": ["docker"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
       "matchPackageNames": ["quay.io/minio/minio"]
     },
-    {
-      "datasources": ["docker"],
-      "versionScheme": "regex:^nightly-0\\.(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-      "packageNames": ["hotio/readarr"]
-    },
-    {
-      "datasources": ["docker"],
-      "versioning": "loose",
-      "packageNames": ["plexinc/pms-docker"]
-    },
-    // pin package versions
+    // Version strategies
     {
       "matchDatasources": ["docker"],
-      "allowedVersions": "<13",
-      "matchPackageNames": [
-        "postgres",
-        "docker.io/library/postgres"
-      ]
+      "matchPackageNames": ["ghcr.io/onedr0p/plex", "ghcr.io/onedr0p/qbittorrent"],
+      "versioning": "loose"
     },
     {
       "matchDatasources": ["docker"],
-      "allowedVersions": "<2",
-      "matchPackageNames": [
-        "influxdb"
-      ]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "allowedVersions": "<2",
-      "matchPackageNames": ["metallb"]
-    },
-    // group packages
-    {
-      "matchDatasources": ["helm", "docker"],
-      "matchPackagePatterns": ["^rook.ceph"],
-      "groupName": "rook-ceph-suite",
-      "additionalBranchPrefix": "",
-      "separateMinorPatch": true
-    },
-    {
-      "matchDatasources": ["github-releases", "docker"],
-      "matchPackagePatterns": [
-        "external-snapshotter",
-        "snapshot-controller"
-      ],
-      "groupName": "external-snapshotter-suite",
-      "additionalBranchPrefix": "",
-      "separateMinorPatch": true
-    },
-    {
-      "matchDatasources": ["github-tags", "docker"],
-      "matchPackagePatterns": ["rancher/system-upgrade-controller"],
-      "groupName": "system-upgrade-controller-suite",
-      "additionalBranchPrefix": "",
-      "separateMinorPatch": true
-    },
-    // auto-updates - daily
-    {
-      "datasources": ["docker"],
-      "automerge": true,
-      "requiredStatusChecks": null,
-      "schedule": "after 1am and before 5am",
-      "updateTypes": ["minor", "patch"],
-      "packageNames": [
-        "homeassistant/home-assistant",
-        "ghcr.io/k8s-at-home/radarr",
-        "ghcr.io/k8s-at-home/sonarr",
-        "ghcr.io/k8s-at-home/nzbget",
-        "plexinc/pms-docker",
-        "hotio/readarr",
-        "nodered/node-red",
-        "zwavejs/zwavejs2mqtt"
-      ]
-    },
-    // auto-updates - weekly
-    {
-      "datasources": ["docker"],
-      "automerge": true,
-      "requiredStatusChecks": null,
-      "schedule": ["before 3am on Monday"],
-      "updateTypes": ["minor", "patch"],
-      "packageNames": [
-        "ghcr.io/k8s-at-home/prowlarr",
-        "ghcr.io/k8s-at-home/readarr"
-      ]
-    },
-    {
-      "datasources": ["helm"],
-      "automerge": true,
-      "requiredStatusChecks": null,
-      "schedule": "after 1am and before 5am",
-      "updateTypes": ["minor", "patch"],
-      "packageNames": [
-        // "grafana",
-        "thanos"
-      ]
+      "matchPackageNames": ["tomsquest/docker-radicale"],
+      "versioning": "pep440"
     }
   ]
 }
