@@ -1,39 +1,37 @@
-name: renovate
+---
+name: Schedule - Renovate
 
 on:
   workflow_dispatch:
+    inputs:
+      dryRun:
+        description: "Dry-Run"
+        default: false
+        required: false
+        type: boolean
+      logLevel:
+        description: "Log-Level"
+        default: "debug"
+        required: false
   schedule:
-  - cron: '0 */6 * * *'
+    - cron: "0 * * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/renovate.json5"
+      - ".github/renovate/**.json"
+      - ".github/renovate/**.json5"
+      - ".github/workflows/renovate.yaml"
 
 jobs:
-  helm-releases:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.PAT }}
-        fetch-depth: 1
-
-    - name: Install yq
-      run: |
-        sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.3.0/yq_linux_amd64
-        sudo chmod +x /usr/local/bin/yq
-
-    - name: Renovate Helm Releases
-      uses: k8s-at-home/renovate-helm-releases@v1
-      with:
-        cluster-path: "./"
-
-    - name: Create pull request for HelmRelease annotations
-      uses: peter-evans/create-pull-request@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        branch: helm-release-annotations
-        title: "[renovate] create helmrelease annotations [ci-skip]"
-        signoff: true
-        committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-        author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-        commit-message: Create renovatebot helmrelease annotations
-        body: |
-          Signed-off-by: Jason Sievert <putz612@users.noreply.github.com>
-        labels: renovate/helm-release-annotations
+  renovate:
+    name: Renovate
+    uses: putz612/gh-workflows/.github/workflows/run-renovate.yaml@main
+    with:
+      configurationFile: ".github/renovate.json5"
+      dryRun: ${{ inputs.dryRun || 'false' }}
+      renovateLogLevel: ${{ inputs.logLevel || 'debug' }}
+    secrets:
+      app_id: ${{ secrets.PUTZ_BOT_APP_ID }}
+      app_private_key: ${{ secrets.PUTZ_BOT_APP_PRIVATE_KEY }}
