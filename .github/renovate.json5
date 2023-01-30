@@ -9,6 +9,8 @@
     "github>putz612/home-ops//.github/renovate/groups.json5",
   ],
   "platform": "github",
+  "username": "putz-bot[bot]",
+  "gitAuthor": "putz-bot <123989446+putz-bot[bot]@users.noreply.github.com>",
   "repositories": ["putz612/k8s-gitops"],
   "flux": {
     "fileMatch": ["kubernetes/.+\\.ya?ml$"]
