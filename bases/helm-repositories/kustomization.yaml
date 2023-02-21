@@ -1,4 +1,5 @@
 resources:
+- 1password.yaml
 - bitnami.yaml
 - bjw-s.yaml
 - blakeblackshear.yaml

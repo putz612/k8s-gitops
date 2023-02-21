@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - scim.yaml
+namespace: northstar

@@ -19,6 +19,7 @@ resources:
   - music
   - nfs
   - nodered
+  - northstar
   - nzbhydra2
   - overseerr
   - photoprism
