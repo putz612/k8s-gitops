@@ -31,6 +31,9 @@ spec:
           - secretName: scim-tls
             hosts:
               - northstar.sievert.fun
+        credentialsSecrets:
+          scimsession:
+            key: scimsession
     redis:
       global:
         storageClass: qnap-nfs-client
