@@ -9,8 +9,8 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: op-scim-bridge
-      version: 2.4.1
+      chart: op-scim
+      version: 2.9.3
       sourceRef:
         kind: HelmRepository
         name: 1password
