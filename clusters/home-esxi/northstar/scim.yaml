@@ -23,14 +23,15 @@ spec:
         className: ""
         annotations: {}
         hosts:
-          - host: northstar.sievert.fun
+          - host: scim.northstarcommunity.org
             paths:
               - path: /
                 pathType: ImplementationSpecific
         tls:
           - secretName: scim-tls
             hosts:
-              - northstar.sievert.fun
+              - scim.northstarcommunity.org 
+        credentialsVolume: {}
         credentialsSecrets:
           scimsession:
             key: scimsession
