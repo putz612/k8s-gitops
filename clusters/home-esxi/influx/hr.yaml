@@ -69,7 +69,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: influxdb
-      tag: 2.6.1-alpine
+      tag: 2.7.0-alpine
     ingress:
       annotations: {}
       className: null
