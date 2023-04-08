@@ -137,8 +137,8 @@ spec:
       config:
         enabled: true
       usb:
-        enabled: false
-        hostPath: /path/to/device
+        enabled: true
+        hostPath: /dev/serial/by-id/usb-Nabu_Casa_SkyConnect_v1.0_18ca9fc7e08cec11abe76ce883c5466d-if00-port0
         type: hostPath
     postgresql:
       enabled: false
