@@ -145,7 +145,7 @@ spec:
       postgresqlPassword: home-assistant-pass
       postgresqlUsername: home-assistant
     securityContext:
-      privileged: null
+      privileged: true
     service:
       appdaemon:
         enabled: true
