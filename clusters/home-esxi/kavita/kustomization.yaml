@@ -1,0 +1,4 @@
+resources:
+  - ns.yaml
+  - kavita.yaml
+namespace: kavita

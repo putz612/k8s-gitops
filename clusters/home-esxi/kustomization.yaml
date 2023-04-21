@@ -14,6 +14,7 @@ resources:
   - heimdall
   - home-assistant
   - influx
+  - kavita
   - metallb-system
   - mealie
   - music
