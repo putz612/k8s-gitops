@@ -44,7 +44,7 @@ spec:
         storageClass: local-path
       media:
         enabled: true
-        mountPath: /books
+        mountPath: /media/books
         existingClaim: kavita-books
     service:
       main:
