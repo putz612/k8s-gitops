@@ -13,7 +13,7 @@
   "gitAuthor": "putz-bot <123989446+putz-bot[bot]@users.noreply.github.com>",
   "repositories": ["putz612/k8s-gitops"],
   "flux": {
-    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+    "fileMatch": ["clusters/.+\\.ya?ml$"]
   },
   "helm-values": {
     "fileMatch": ["clusters/.+\\.ya?ml$"]
@@ -24,7 +24,7 @@
   "regexManagers": [
     {
       "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
-      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
+      "fileMatch": ["clusters/.+\\.ya?ml$"],
       "matchStrings": [
         "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
       ],
@@ -46,7 +46,7 @@
       "description": ["Raw GitHub URL Regex manager"],
       "fileMatch": [
         "infrastructure/.+\\.ya?ml$",
-        "kubernetes/.+\\.ya?ml$"
+        "clusters/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*",
