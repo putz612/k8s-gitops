@@ -13,7 +13,10 @@
   "gitAuthor": "putz-bot <123989446+putz-bot[bot]@users.noreply.github.com>",
   "repositories": ["putz612/k8s-gitops"],
   "flux": {
-    "fileMatch": ["clusters/.+\\.ya?ml$"]
+    "fileMatch": [
+      "clusters/.+\\.ya?ml$",
+      "bases/.+\\.ya?ml$"
+    ]
   },
   "helm-values": {
     "fileMatch": ["clusters/.+\\.ya?ml$"]
