@@ -1,5 +1,5 @@
 resources:
   - ns.yaml
-  - influxdbv1-helm-values.yaml
+  - influxdb-helm-values.yaml
   - hr.yaml
 namespace: influx
