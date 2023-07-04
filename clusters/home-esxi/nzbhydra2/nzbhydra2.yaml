@@ -22,7 +22,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: linuxserver/nzbhydra2
-      tag: 5.1.8
+      tag: 5.1.9
     ingress:
       main:
         enabled: true
