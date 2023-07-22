@@ -24,7 +24,7 @@ spec:
     image:
       pullPolicy: Always
       repository: ghcr.io/unpoller/unpoller
-      tag: v2.7.14
+      tag: v2.7.20@sha256:185e2df94e291a5680ab610e77d4a07560e9c5034f0e3ff79a69fde38f9adc34
     ingress:
       main:
         enabled: true
