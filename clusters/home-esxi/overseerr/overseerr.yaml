@@ -23,7 +23,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: ghcr.io/sct/overseerr
-      tag: 1.33.0
+      tag: 1.33.2
     ingress:
       main:
         enabled: true
