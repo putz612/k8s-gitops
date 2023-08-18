@@ -32,7 +32,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: zwavejs/zwavejs2mqtt
-      tag: 8.21.0
+      tag: 8.23.0@sha256:9a5fbdd2af427d18cfb8579bac4d7141bd0634509824c02e2ec41516d1254bbf
     ingress:
       main:
         enabled: true
