@@ -22,7 +22,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: ghcr.io/k8s-at-home/sonarr
-      tag: v3.0.9.1549
+      tag: v3.0.9.1549@sha256:6f11e1a769216c576d6073a5288d81f10e08ddd79baf59656f21dbb2fd896e72
     ingress:
       main:
         enabled: true
@@ -48,7 +48,7 @@ spec:
         image:
           pullPolicy: IfNotPresent
           repository: ghcr.io/onedr0p/exportarr
-          tag: v1.5.3
+          tag: v1.5.3@sha256:4348ea56ba68ae86d4e563e95789349c37ec97f7e0ac656e750af7950e523c6f
       prometheusRule:
         enabled: false
         labels: {}

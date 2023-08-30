@@ -44,7 +44,7 @@ spec:
       pullSecrets: []
       registry: docker.io
       repository: bitnami/mariadb
-      tag: 10.7.4-debian-10-r15
+      tag: 10.7.4-debian-10-r15@sha256:7c2183dd53a0681356b469baab88a314df4004589ebae6197519ab0248fb4d2c
     initdbScripts: {}
     initdbScriptsConfigMap: ''
     kubeVersion: ''
@@ -63,7 +63,7 @@ spec:
         pullSecrets: []
         registry: docker.io
         repository: bitnami/mysqld-exporter
-        tag: 0.14.0-debian-10-r75
+        tag: 0.14.0-debian-10-r75@sha256:7b635042630ca11670ad0fbe8c5a66315bb5e81c6da5f4ab26ceac50edf1eac4
       livenessProbe:
         enabled: true
         failureThreshold: 3
@@ -381,7 +381,7 @@ spec:
         pullSecrets: []
         registry: docker.io
         repository: bitnami/bitnami-shell
-        tag: 10-debian-10-r431
+        tag: 10-debian-10-r431@sha256:baa22eb5e2dc350d92510e0c10ce2f7eab33368e7174fcf6698fec17e4e2dbad
       resources:
         limits: {}
         requests: {}

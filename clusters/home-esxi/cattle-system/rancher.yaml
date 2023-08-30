@@ -30,7 +30,7 @@ spec:
       maxAge: 1
       maxBackup: 1
       maxSize: 100
-    busyboxImage: busybox
+    busyboxImage: busybox@sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
     certmanager:
       version: ''
     customLogos:
@@ -60,14 +60,14 @@ spec:
       ignoreTimeoutError: false
       image:
         repository: rancher/shell
-        tag: v0.1.20
+        tag: v0.1.20@sha256:bb5078e5052b34801b53894f93f590251341965e75d1d3b603bb8e68238946c4
       namespaceList:
         - cattle-fleet-system
         - cattle-system
         - rancher-operator-system
       timeout: 120
     privateCA: false
-    rancherImage: rancher/rancher
+    rancherImage: rancher/rancher@sha256:5ba20e4e51a484f107f3f270fa52c5e609cad0692dd00a26169cc3541b1f3788
     replicas: 1
     resources: {}
     restrictedAdmin: false

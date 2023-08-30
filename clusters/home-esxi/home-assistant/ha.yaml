@@ -41,7 +41,7 @@ spec:
             name: config
         image:
           repository: ghcr.io/k8s-at-home/code-server
-          tag: v4.6.0
+          tag: v4.6.0@sha256:68b8d9ca3c04f3c9dc2919b4d768d343f4fa53b4abafe5f3348dd7ac292d8e51
         ingress:
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt
@@ -137,7 +137,7 @@ spec:
       enabled: false
       image:
         repository: bitnami/postgresql
-        tag: 15.3.0
+        tag: 15.3.0@sha256:77522b39d2c3a53c9578c6ba7f299453fea8044b2ba968c8255a50e8070ad8ba
       persistence:
         primary:
           enabled: false

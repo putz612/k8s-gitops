@@ -21,7 +21,7 @@ spec:
       repository: emqx/emqx
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "5.0.16-alpine"
+      tag: "5.0.16-alpine@sha256:e038bfd31cdc59fd0a4ab606610a30651da09bdf194cf2679f175cc2e240b2da"
     recreatePods: true
     persistance:
       enabled: true

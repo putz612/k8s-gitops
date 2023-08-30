@@ -58,7 +58,7 @@ spec:
         enabled: true
         image:
           repository: ghcr.io/k8s-at-home/code-server
-          tag: v4.6.0
+          tag: v4.6.0@sha256:68b8d9ca3c04f3c9dc2919b4d768d343f4fa53b4abafe5f3348dd7ac292d8e51
         ingress:
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt

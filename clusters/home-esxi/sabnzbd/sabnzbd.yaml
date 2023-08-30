@@ -23,7 +23,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: ghcr.io/k8s-at-home/sabnzbd
-      tag: v3.7.0
+      tag: v3.7.0@sha256:6c8bb47bbc4459bfa561d66585163d5981d1d110a0401d9f9748763e6e1f184a
     ingress:
       main:
         enabled: true

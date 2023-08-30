@@ -67,7 +67,7 @@ spec:
     image:
       pullPolicy: Always
       repository: pihole/pihole
-      tag: 2023.05.2
+      tag: 2023.05.2@sha256:8bc45afe1625487aef62859a5bf02f3d7b3429e480f4e29e4689635ab86ec312
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
@@ -90,7 +90,7 @@ spec:
         image:
           pullPolicy: IfNotPresent
           repository: ekofr/pihole-exporter
-          tag: v0.4.0
+          tag: v0.4.0@sha256:b101b2beb6787aee407be287fe35426cf88f15233ed01aeeef445931232d89e4
         port: 9617
         resources:
           limits:
