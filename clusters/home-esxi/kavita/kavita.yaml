@@ -21,7 +21,7 @@ spec:
     image:
       pullPolicy: Always
       repository: kizaing/kavita
-      tag: 0.7.3@sha256:7b106d70ca46c0eca55e749d6029a5da608d82fb39eb8f689fdab688b701b5e4
+      tag: 0.7.7@sha256:fd68b017d1dd7ad924024c20c31ead1f5beb1f30f1729c11f7e67ae3680203e6
     ingress:
       main:
         enabled: true
