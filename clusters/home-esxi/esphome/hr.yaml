@@ -22,7 +22,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: esphome/esphome
-      tag: 2023.8.2@sha256:b0da16a8b58bb1a2fd94cc2377c0a2ab6625fb034af8981b721743205a3307f0
+      tag: 2023.9.0@sha256:88eed385c98b50bb8be43e42f3f328151f903e424460618caaf6ce0194c23cc3
     ingress:
       main:
         enabled: true
