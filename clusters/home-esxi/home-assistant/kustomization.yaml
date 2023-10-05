@@ -3,5 +3,4 @@ resources:
   - ha.yaml
   - hadb-helm-values.yaml
   - hadb.yaml
-  - mqtt.yaml
 namespace: ha
