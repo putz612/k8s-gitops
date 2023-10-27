@@ -26,7 +26,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: nodered/node-red
-      tag: 3.1.0-14@sha256:dcb57be3c155986222289e5ff4f39a2a70252099d29b6880f5f914673ae070d1
+      tag: 3.1.0-14@sha256:280412d95daa18ca039e35a5b59ef299b812b388407d6baadac3cbc2841f98c7
     ingress:
       main:
         enabled: true
