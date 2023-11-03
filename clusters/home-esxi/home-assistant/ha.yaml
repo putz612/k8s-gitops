@@ -137,7 +137,7 @@ spec:
       enabled: false
       image:
         repository: bitnami/postgresql
-        tag: 16.0.0@sha256:3331ad89ba2d1af68e36521724440638be3834978ac8288c49e54929357143e6
+        tag: 16.0.0@sha256:271631fb8da73a2fa11f88ed7cc1b164d08389bafce4ab9121211564c4e38a24
       persistence:
         primary:
           enabled: false
