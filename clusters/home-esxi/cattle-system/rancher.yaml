@@ -30,7 +30,7 @@ spec:
       maxAge: 1
       maxBackup: 1
       maxSize: 100
-    busyboxImage: busybox@sha256:11898760e1e5bb9379d908c7b54a9ec67eeae589b7391abb00501084595dc32f
+    busyboxImage: busybox@sha256:1ceb872bcc68a8fcd34c97952658b58086affdcb604c90c1dee2735bde5edc2f
     certmanager:
       version: ''
     customLogos:
