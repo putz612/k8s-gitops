@@ -1,6 +1,6 @@
 resources:
   - ns.yaml
-  - ha.yaml
+#  - ha.yaml
   - hadb-helm-values.yaml
   - hadb.yaml
 namespace: ha
