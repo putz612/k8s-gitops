@@ -25,7 +25,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: golift/unifi-poller
-      tag: v2.9.4@sha256:20c161781ac544a7548c8dd533f13498201746efdf0853d4625a1dbfd5652a19
+      tag: v2.10.0@sha256:c2ac3a1415efeec0ad2a191786e570348748570bbdd414d0a56ef663ee09dca4
     influxdb:
       architecture: standalone
       authEnabled: false
