@@ -26,7 +26,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: deluan/navidrome
-      tag: 0.50.1@sha256:79ccb38ac91596d33b3b1a210e617a2bf609d65cac64205d0c4eae3aad69a9f0
+      tag: 0.52.5@sha256:b154aebe8b33bae82c500ad0a3eb743e31da54c3bfb4e7cc3054b9a919b685c7
     ingress:
       main:
         enabled: true
