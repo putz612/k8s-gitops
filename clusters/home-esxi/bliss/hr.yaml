@@ -22,7 +22,7 @@ spec:
     image:
       pullPolicy: Always
       repository: cooperised/bliss
-      tag: latest@sha256:b97766fbba88ed09834b50cce014e77c56a4e87876a75174d816aa7503ea8daf
+      tag: latest@sha256:939904595b6a0a48cdc4b663c93808742057047420d120f0c979cb051eef0c21
     ingress:
       main:
         enabled: true
