@@ -64,7 +64,7 @@ spec:
         pullSecrets: []
         registry: docker.io
         repository: bitnami/mysqld-exporter
-        tag: 0.14.0-debian-10-r75@sha256:7b635042630ca11670ad0fbe8c5a66315bb5e81c6da5f4ab26ceac50edf1eac4
+        tag: 0.15.1-debian-12-r25@sha256:d32a0a3de142bec72abcf953565871fb51c6d612836b7ceda8d883be7eb96af1
       livenessProbe:
         enabled: true
         failureThreshold: 3
