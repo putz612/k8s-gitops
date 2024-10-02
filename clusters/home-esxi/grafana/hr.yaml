@@ -126,7 +126,7 @@ spec:
       pullSecrets: []
       registry: docker.io
       repository: bitnami/grafana
-      tag: 8.5.4-debian-10-r1@sha256:d82b436b768c31f8e29f59259f0cd11f4b6e48741e0f20e1c434fd6a343088ff
+      tag: 11.2.2-debian-12-r0@sha256:d4c8d5ed74573bbf777a775a96513f595792cfb76065a14e3dec4bd3a842d4ec
     imageRenderer:
       affinity: {}
       args: []
