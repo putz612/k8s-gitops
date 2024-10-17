@@ -60,7 +60,7 @@ spec:
       ignoreTimeoutError: false
       image:
         repository: rancher/shell
-        tag: v0.1.22@sha256:098c29e11ae9bd5ef8e58401a2892aae7491f71bc2e02ce211fe67d8544b35f9
+        tag: v0.2.2@sha256:2fc130d369b316abb5111a99c4b0bbb64b2cf6fb2cf6f47fcb62e18c3a856a9c
       namespaceList:
         - cattle-fleet-system
         - cattle-system
