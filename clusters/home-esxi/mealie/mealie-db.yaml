@@ -65,7 +65,7 @@ spec:
       pullSecrets: []
       registry: docker.io
       repository: bitnami/postgresql
-      tag: 14.3.0-debian-10-r8@sha256:caacb059999534e7bb2cd2f53421677956f5dab21e26d862f1a55841a7a82262
+      tag: 17.0.0-debian-12-r5@sha256:02468d9e9f95f1f93e39069202197fdf7b8ccc8a4f63c833da06b3adaf5a5262
     kubeVersion: ''
     metrics:
       containerPorts:
