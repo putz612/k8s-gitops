@@ -30,7 +30,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: hkotel/mealie
-      tag: v0.5.6@sha256:d8235f9e47954724f22d3480f2f7d4b3b6e9c7942a49477840aacc988351b3a1
+      tag: v2.0.0@sha256:c2ea6f1e7fecaa7befe6f2dd02423b5ff31c4551f5afb64576fba0e65a2a4c5b
     ingress:
       main:
         enabled: true
