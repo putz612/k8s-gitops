@@ -143,7 +143,7 @@ spec:
         pullSecrets: []
         registry: docker.io
         repository: bitnami/grafana-image-renderer
-        tag: 3.4.2-debian-10-r55@sha256:612624cfada4640b5fe7d4b9de049da9323acef0353959476b36b3f00dc55a12
+        tag: 3.12.1-debian-12-r5@sha256:f29db820a54d92bb7aaf7e6a080ffb748f25dd1e920178cc21a1d34527299523
       initContainers: []
       metrics:
         annotations:
