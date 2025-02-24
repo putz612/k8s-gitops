@@ -22,7 +22,7 @@ spec:
     image:
       pullPolicy: IfNotPresent
       repository: ghcr.io/advplyr/audiobookshelf
-      tag: 2.6.0@sha256:73356ac9ffbb85f0b9dd265b8b7c966d9adcb152c8713cadca961d576af13700
+      tag: 2.19.5@sha256:4d383bfd61135492ab3c52fe98550b9640e7d0791ed2a5e81c98e4087f5086d0
     ingress:
       main:
         enabled: true
