@@ -48,7 +48,7 @@ spec:
         image:
           pullPolicy: IfNotPresent
           repository: ghcr.io/onedr0p/exportarr
-          tag: v1.6.0@sha256:b522e128509b766cf66f847190fccd225ff194dc76775fe6a215f2dd3010cac2
+          tag: v2.1.0@sha256:ffe2065573db0f9717443143316eac6b335c37e6f6fea2f6a238ef3f134ee50a
       prometheusRule:
         enabled: false
         labels: {}
