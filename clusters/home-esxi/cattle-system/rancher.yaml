@@ -67,7 +67,7 @@ spec:
         - rancher-operator-system
       timeout: 120
     privateCA: false
-    rancherImage: rancher/rancher@sha256:a87fa5af45c6281ce19c7159fe08e785957754e89dae53741bbb039b9eadcaff
+    rancherImage: rancher/rancher@sha256:58500bf830fa8c506766317d8f815c491ccaecb7ba145f36d8435e6ff52f46f1
     replicas: 1
     resources: {}
     restrictedAdmin: false
