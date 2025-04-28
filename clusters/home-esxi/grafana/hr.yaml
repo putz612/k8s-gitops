@@ -290,7 +290,7 @@ spec:
         pullSecrets: []
         registry: docker.io
         repository: bitnami/bitnami-shell
-        tag: 10-debian-10-r432@sha256:84701a8920bc816b8343cf94e0fffac75d0b0ba39f7733480bff7e0723d67eff
+        tag: 11-debian-11-r136@sha256:201f48da3d894ce5aaf22e042683319a0e7095fccc8ef069ef792eb06426b6b9
       resources:
         limits: {}
         requests: {}
