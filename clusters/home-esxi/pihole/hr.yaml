@@ -90,7 +90,7 @@ spec:
         image:
           pullPolicy: IfNotPresent
           repository: ekofr/pihole-exporter
-          tag: v0.4.0@sha256:b101b2beb6787aee407be287fe35426cf88f15233ed01aeeef445931232d89e4
+          tag: v1.0.1@sha256:c33eec2a8308fa510608b93d4921bb62f75f6132f8792b24e63972835f624496
         port: 9617
         resources:
           limits:
