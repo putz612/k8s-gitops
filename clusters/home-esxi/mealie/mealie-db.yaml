@@ -85,7 +85,7 @@ spec:
         pullSecrets: []
         registry: docker.io
         repository: bitnami/postgres-exporter
-        tag: 0.10.1-debian-10-r118@sha256:0ee1570f0e0b32a4c9b4f3508fede6e501ecd0e32ea02d3b7c3b020dd5d875b6
+        tag: 0.17.1-debian-12-r10@sha256:f4e659d7b50a35416dfd9f71b0fdb48b03471b562a47611c5147f568b5216137
       livenessProbe:
         enabled: true
         failureThreshold: 6
