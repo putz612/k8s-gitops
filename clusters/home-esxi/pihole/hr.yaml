@@ -67,7 +67,7 @@ spec:
     image:
       pullPolicy: Always
       repository: pihole/pihole
-      tag: 2023.11.0@sha256:24b1ef8f66d810faffefdb9b66850bbe2d55013506b892605acef414e210edeb
+      tag: 2025.06.2@sha256:706fa18daedc85b73684b57468b7e20ec213cfaf98be735aadee183825188ea0
     ingress:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
